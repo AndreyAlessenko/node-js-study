@@ -17,4 +17,8 @@ const firstNum = Number(process.argv[2])
 const secondNum = Number(process.argv[3])
 const operation = process.argv[4]
 
-myEmitter.emit(operation, firstNum, secondNum)
+if (isNaN(firstNum) || isNaN(secondNum) || !['multiply', 'add'].includes(operation)) {
+    console.log('Invalid operation')
+} else {
+    myEmitter.emit(operation, firstNum, secondNum)
+}

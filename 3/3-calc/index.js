@@ -2,21 +2,19 @@ const { multiply } = require('./multiply');
 const { add } = require('./add');
 
 
-const firstNum = process.argv[2]
-const secondNum = process.argv[3]
+const firstNum = Number(process.argv[2])
+const secondNum = Number(process.argv[3])
 const operation = process.argv[4]
 
-let func = ''
+let result
 
-if(operation === 'multiply') {
-    func = multiply
-} else if (operation === 'add') {
-    func = add
+if (isNaN(firstNum) || isNaN(secondNum) || !['multiply', 'add'].includes(operation)) {
+    console.log('Invalid operation')
 } else {
-    func = () => {
-        console.log('Invalid operation')
+    if(operation === 'multiply') {
+        result = multiply(firstNum, secondNum)
+    } else if (operation === 'add') {
+        result = add(firstNum, secondNum)
     }
+    console.log(result)
 }
-
-
-console.log(func(firstNum, secondNum))
